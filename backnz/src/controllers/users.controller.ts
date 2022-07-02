@@ -17,6 +17,7 @@ import {
   requestBody,
   response,
 } from '@loopback/rest';
+import {randomBytes} from 'crypto';
 import {AppUserTb} from '../models';
 import {AppUserTbRepository} from '../repositories';
 
@@ -44,6 +45,7 @@ export class UsersController {
     })
     appUserTb: Omit<AppUserTb, 'id'>,
   ): Promise<AppUserTb> {
+    appUserTb.paswword = randomBytes(32).toString('hex');
     return this.appUserTbRepository.create(appUserTb);
   }
 

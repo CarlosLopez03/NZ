@@ -11,7 +11,7 @@ export class AppUserTb extends UserTb {
   @property({
     type: 'string',
   })
-  paswword?: string;
+  paswword: string;
 
   @property({
     type: 'string',
