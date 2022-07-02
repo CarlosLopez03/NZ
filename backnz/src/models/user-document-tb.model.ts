@@ -4,6 +4,13 @@ import {TypeDocumentTb} from './type-document-tb.model';
 @model()
 export class UserDocumentTb extends Entity {
   @property({
+    type: 'number',
+    id: true,
+    generated: true,
+  })
+  id?: number;
+
+  @property({
     type: 'object',
   })
   UserID?: object;
@@ -14,8 +21,8 @@ export class UserDocumentTb extends Entity {
       minLength: 5,
       maxLength: 20,
       errorMessage: {
-        minLength: 'El nombre de la ciudad debe ser de minimo 5 caracteres',
-        maxLength: 'El nombre de la ciudad debe ser de maximo 20 caracteres',
+        minLength: 'El nombre del documento debe ser de minimo 5 caracteres',
+        maxLength: 'El nombre del documento debe ser de maximo 20 caracteres',
       },
     },
   })
@@ -32,8 +39,10 @@ export class UserDocumentTb extends Entity {
       minLength: 5,
       maxLength: 60,
       errorMessage: {
-        minLength: 'El nombre de la ciudad debe ser de minimo 5 caracteres',
-        maxLength: 'El nombre de la ciudad debe ser de maximo 60 caracteres',
+        minLength:
+          'El nombre de la fecha de expedición debe ser de minimo 5 caracteres',
+        maxLength:
+          'El nombre de la fecha de expedición debe ser de maximo 60 caracteres',
       },
     },
   })

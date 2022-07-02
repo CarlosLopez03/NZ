@@ -1,20 +1,9 @@
 import {Entity, model, property} from '@loopback/repository';
+import {UserDocumentTb} from './user-document-tb.model';
+import {ContacInfoTb} from './contac-info-tb.model';
 
 @model()
 export class UserTb extends Entity {
-  @property({
-    type: 'string',
-    jsonSchema: {
-      minLength: 5,
-      maxLength: 20,
-      errorMessage: {
-        minLength: 'El nombre de la ciudad debe ser de minimo 5 caracteres',
-        maxLength: 'El nombre de la ciudad debe ser de maximo 20 caracteres',
-      },
-    },
-  })
-  LastName?: string;
-
   @property({
     type: 'string',
     id: true,
@@ -28,12 +17,35 @@ export class UserTb extends Entity {
       minLength: 5,
       maxLength: 20,
       errorMessage: {
-        minLength: 'El nombre de la ciudad debe ser de minimo 5 caracteres',
-        maxLength: 'El nombre de la ciudad debe ser de maximo 20 caracteres',
+        minLength: 'El nombre del usuario debe ser de minimo 5 caracteres',
+        maxLength: 'El nombre del usuario debe ser de maximo 20 caracteres',
       },
     },
   })
   Name?: string;
+
+  @property({
+    type: 'string',
+    jsonSchema: {
+      minLength: 5,
+      maxLength: 20,
+      errorMessage: {
+        minLength: 'El apellido del usuario debe ser de minimo 5 caracteres',
+        maxLength: 'El apellido del usuario debe ser de maximo 20 caracteres',
+      },
+    },
+  })
+  LastName?: string;
+
+  @property({
+    type: 'object',
+  })
+  documentUser?: UserDocumentTb;
+
+  @property({
+    type: 'object',
+  })
+  infoUser?: ContacInfoTb;
 
   @property({
     type: 'boolean',
