@@ -114,6 +114,19 @@ export class UsersController {
     return this.appUserTbRepository.findById(id, filter);
   }
 
+  @get('/api-users/findEmailUser/{email}')
+  @response(200, {
+    description: 'User Email Exists',
+    content: {
+      'application/json': {
+        schema: getModelSchemaRef(AppUserTb, {includeRelations: true}),
+      },
+    },
+  })
+  async findOneEmailUser(@param.path.string('email') email: string) {
+    return this.appUserTbRepository.find({where: {and: [{email: email}]}}, {});
+  }
+
   @patch('/api-users/updateUserById/{id}')
   @response(204, {
     description: 'AppUserTb PATCH success',
