@@ -16,6 +16,10 @@ Se realiza en el framework Angular.
     
 ## FAQ
 
+#### Que base de datos se utilizo?
+
+La prueba se desarrolla en MongoDB.
+
 #### ¿ Porque se añade un correo de confirmación?
 
 Debido a que el alcance de la prueba, no se tiene en consideración el envio de correo para habilitar la variable "emailVerified".
