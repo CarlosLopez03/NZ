@@ -4,11 +4,11 @@ import {TypeDocumentTb} from './type-document-tb.model';
 @model()
 export class UserDocumentTb extends Entity {
   @property({
-    type: 'number',
+    type: 'string',
     id: true,
     generated: true,
   })
-  id?: number;
+  id?: string;
 
   @property({
     type: 'object',

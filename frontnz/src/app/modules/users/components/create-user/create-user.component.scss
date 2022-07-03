@@ -1,0 +1,66 @@
+@import "/styles/styles.scss";
+
+.color-icon-title {
+  color: #673ab7;
+}
+
+.example-two-width {
+  width: 50%;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.example-three-width {
+  width: 33.33%;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.example-fourth-width {
+  width: 25%;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.isBoolean {
+  width: 50%;
+  justify-content: center;
+  display: flex;
+  padding-top: 10px;
+}
+
+.headers-align .mat-expansion-panel-header-title,
+.headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+:host
+  ::ng-deep
+  .mat-slide-toggle.mat-checked:not(.mat-disabled)
+  .mat-slide-toggle-bar {
+  background-color: #673ab7;
+}
+
+:host
+  ::ng-deep
+  .mat-slide-toggle.mat-checked:not(.mat-disabled)
+  .mat-slide-toggle-thumb {
+  background-color: #673ab7;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background-color: #673ab7 !important;
+}
+
+::ng-deep .mat-checkbox-ripple .mat-ripple-element {
+  background-color: #673ab7 !important;
+}
+
+::ng-deep .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: #673ab7 !important;
+}

@@ -1,0 +1,123 @@
+<!-- Container Button - Create User -->
+<div class="container-button">
+  <!-- Button -->
+  <div class="button-left">
+    <button
+      mat-flat-button
+      class="btn-register-user"
+      (click)="onChangeView(false)"
+    >
+      <mat-icon class="home-icon">account_box</mat-icon>Registar Usuario
+    </button>
+  </div>
+  <!-- Button -->
+</div>
+<!-- Container Button - Create User -->
+
+<!-- Container - List -->
+<div class="container-border">
+  <!-- Filter -->
+  <mat-form-field appearance="standard">
+    <mat-label>Filtro</mat-label>
+    <input matInput (keyup)="applyFilter($event)" />
+  </mat-form-field>
+  <!-- Filter -->
+
+  <!-- Table -->
+  <div class="container-table">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <!-- documentUser -->
+      <ng-container matColumnDef="documentUser">
+        <th mat-header-cell *matHeaderCellDef sticky mat-sort-header>
+          Documento del Usuario
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{
+            element?.documentUser.TypeDocumentID.id +
+              " - " +
+              element?.documentUser.Document
+          }}
+        </td>
+      </ng-container>
+      <!-- documentUser -->
+
+      <!-- Name -->
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef sticky mat-sort-header>
+          Nombre del Usuario
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element?.Name }}</td>
+      </ng-container>
+      <!-- Name -->
+
+      <!-- LastName -->
+      <ng-container matColumnDef="LastName">
+        <th mat-header-cell *matHeaderCellDef sticky mat-sort-header>
+          Apellido del Usuario
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element?.LastName }}</td>
+      </ng-container>
+      <!-- LastName -->
+
+      <!-- username -->
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef sticky>Usuario</th>
+        <td mat-cell *matCellDef="let element">{{ element?.username }}</td>
+      </ng-container>
+      <!-- username -->
+
+      <!-- email -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef sticky>Email</th>
+        <td mat-cell *matCellDef="let element">{{ element?.email }}</td>
+      </ng-container>
+      <!-- email -->
+
+      <!-- TimeCreate -->
+      <ng-container matColumnDef="TimeCreate">
+        <th mat-header-cell *matHeaderCellDef sticky>Creado</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element?.TimeCreate | date }}
+        </td>
+      </ng-container>
+      <!-- TimeCreate -->
+
+      <!-- opciones -->
+      <ng-container matColumnDef="opciones">
+        <th mat-header-cell *matHeaderCellDef sticky>Opciones</th>
+        <td mat-cell *matCellDef="let element; let i = index">
+          <!-- Editar -->
+          <mat-icon
+            class="table-icon-active"
+            aria-hidden="false"
+            title="Editar Usuario"
+            (click)="onChangeView(true, element)"
+            >edit</mat-icon
+          >
+          <!-- Editar -->
+
+          <!-- Eliminar -->
+          <mat-icon
+            class="table-icon-red"
+            aria-hidden="false"
+            title="Remover Usuario"
+            (click)="removeUser(element)"
+            >close</mat-icon
+          >
+          <!-- Eliminar -->
+        </td>
+      </ng-container>
+      <!-- opciones -->
+
+      <!-- config Table -->
+      <tr mat-header-row *matHeaderRowDef="displayedColums; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColums"></tr>
+      <!-- config Table -->
+    </table>
+  </div>
+  <!-- Table -->
+</div>
+<!-- Container - List -->
+<!-- Paginator -->
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+<!-- Paginator -->

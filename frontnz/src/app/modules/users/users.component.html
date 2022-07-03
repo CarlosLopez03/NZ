@@ -1,0 +1,11 @@
+<mat-tab-group [(selectedIndex)]="index" mat-align-tabs="center">
+  <mat-tab label="Listado de Usuarios">
+    <app-list-user
+      (changeView)="onChangeView($event)"
+      (hide)="index = 1"
+    ></app-list-user>
+  </mat-tab>
+  <mat-tab [label]="changeName" *ngIf="index">
+    <app-create-user></app-create-user>
+  </mat-tab>
+</mat-tab-group>

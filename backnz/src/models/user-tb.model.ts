@@ -40,7 +40,7 @@ export class UserTb extends Entity {
   @property({
     type: 'object',
   })
-  documentUser?: UserDocumentTb[];
+  documentUser?: UserDocumentTb;
 
   @property({
     type: 'object',

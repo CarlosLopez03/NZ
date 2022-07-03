@@ -1,0 +1,412 @@
+<!-- Mat Accordion -->
+<mat-accordion class="headers-align">
+  <!-- Info Usuario -->
+  <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+    <!-- Title -->
+    <mat-expansion-panel-header>
+      <mat-panel-title><strong>Información del Usuario</strong></mat-panel-title
+      ><mat-icon class="color-icon-title">label_important</mat-icon>
+    </mat-expansion-panel-header>
+    <!-- Title -->
+
+    <!-- Form Group -->
+    <form [formGroup]="formUser" autocomplete="off">
+      <!-- Block1 -->
+
+      <div style="display: flex">
+        <!-- Type Document -->
+        <mat-form-field class="example-fourth-width">
+          <mat-select
+            [(ngModel)]="selectTypeDocument"
+            formControlName="TypeDocument"
+            name="TypeDocument"
+            [disableOptionCentering]="true"
+            ><mat-option
+              *ngFor="let item of listTypeDocument"
+              [value]="item.id"
+              >{{ item.NameTypeDocument }}</mat-option
+            ></mat-select
+          >
+        </mat-form-field>
+        <!-- Type Document -->
+
+        <!-- Document -->
+        <mat-form-field class="example-fourth-width">
+          <mat-label>Número de Documento</mat-label>
+          <input
+            [(ngModel)]="selectDocument"
+            matInput
+            placeholder="Número de Documento"
+            formControlName="Document"
+            [type]="'number'"
+          />
+          <mat-icon matSuffix class="color-icon-title">badge</mat-icon>
+        </mat-form-field>
+        <!-- Document -->
+
+        <!-- PlaceExpedition -->
+        <mat-form-field class="example-fourth-width">
+          <mat-label>Lugar de Expedicción</mat-label>
+          <input
+            [(ngModel)]="selectPlaceExpedition"
+            matInput
+            placeholder="Lugar de Expedicción"
+            formControlName="PlaceExpedition"
+          />
+        </mat-form-field>
+        <!-- PlaceExpedition -->
+
+        <!-- DateExpedition -->
+        <mat-form-field class="example-fourth-width">
+          <mat-label>Fecha de Expedicción</mat-label>
+          <input
+            [(ngModel)]="selectDateExpedition"
+            matInput
+            formControlName="DateExpedition"
+            [matDatepicker]="datepicker"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="datepicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #datepicker>
+            <mat-datepicker-actions>
+              <button mat-button matDateRangePickerCancel>Cancelar</button>
+              <button mat-raised-button color="primary" matDatepickerApply>
+                Seleccionar
+              </button>
+            </mat-datepicker-actions>
+          </mat-datepicker>
+        </mat-form-field>
+        <!-- DateExpedition -->
+      </div>
+
+      <!-- Block1 -->
+
+      <!-- Block2 -->
+      <div style="display: flex">
+        <!-- Name -->
+        <mat-form-field class="example-two-width">
+          <mat-label>Nombre del Usuario</mat-label>
+          <input
+            matInput
+            placeholder="Nombre del Usuario"
+            formControlName="Name"
+          />
+          <mat-icon matSuffix class="color-icon-title">perm_identity</mat-icon>
+        </mat-form-field>
+        <!-- Name -->
+
+        <!-- LastName -->
+        <mat-form-field class="example-two-width">
+          <mat-label>Apellido del Usuario</mat-label>
+          <input
+            matInput
+            placeholder="Apellido del Usuario"
+            formControlName="LastName"
+          />
+          <mat-icon matSuffix class="color-icon-title">perm_identity</mat-icon>
+        </mat-form-field>
+        <!-- LastName -->
+      </div>
+      <!-- Block2 -->
+
+      <!-- Block 3 -->
+      <div style="display: flex; justify-content: center">
+        <!-- isMilitar -->
+        <mat-label>Militar</mat-label>
+        <mat-slide-toggle
+          [(ngModel)]="selectIsMilitar"
+          style="margin-left: 5px; margin-right: 20px"
+          formControlName="isMilitar"
+        ></mat-slide-toggle>
+        <!-- isMilitar -->
+
+        <!-- isTemporal -->
+        <mat-label>Temporal</mat-label>
+        <mat-slide-toggle
+          [(ngModel)]="selectIsTemporal"
+          style="margin-left: 5px"
+          formControlName="isTemporal"
+        ></mat-slide-toggle>
+        <!-- isTemporal -->
+      </div>
+      <!-- Block 3 -->
+
+      <!-- Button siguiente -->
+      <mat-action-row>
+        <button mat-raised-button color="primary" (click)="nextStep()">
+          Siguiente
+        </button>
+      </mat-action-row>
+      <!-- Button siguiente -->
+    </form>
+    <!-- Form Group -->
+  </mat-expansion-panel>
+  <!-- Info Usuario -->
+
+  <!-- Usuario -->
+  <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+    <!-- Title -->
+    <mat-expansion-panel-header>
+      <mat-panel-title
+        ><strong>Datos de Inicio de Sesión</strong></mat-panel-title
+      ><mat-icon class="color-icon-title">manage_accounts</mat-icon>
+    </mat-expansion-panel-header>
+    <!-- Title -->
+
+    <!-- Form -->
+    <form [formGroup]="formUser" autocomplete="off">
+      <!-- Block 1 -->
+      <div style="display: flex">
+        <!-- username -->
+        <mat-form-field class="example-two-width">
+          <mat-label>Usuario</mat-label>
+          <input matInput placeholder="Usuario" formControlName="username" />
+          <mat-icon matSuffix class="color-icon-title">perm_identity</mat-icon>
+        </mat-form-field>
+        <!-- username -->
+
+        <!-- password -->
+        <mat-form-field class="example-two-width">
+          <mat-label>Contraseña</mat-label>
+          <input
+            matInput
+            formControlName="password"
+            [type]="hidePassword ? 'password' : 'text'"
+          /><button
+            mat-icon-button
+            matSuffix
+            (click)="hidePassword = !hidePassword"
+          >
+            <mat-icon class="color-icon-title">{{
+              hidePassword ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+        </mat-form-field>
+        <!-- password -->
+      </div>
+      <!-- Block 1 -->
+
+      <!-- Block 2 -->
+      <div style="display: flex">
+        <!-- email -->
+        <mat-form-field class="example-three-width">
+          <mat-label>Correo Electronico</mat-label>
+          <input
+            matInput
+            placeholder="ejemplo@ejemplo.com"
+            formControlName="email"
+          />
+          <mat-icon matSuffix class="color-icon-title">perm_identity</mat-icon>
+        </mat-form-field>
+        <!-- email -->
+
+        <!-- confEmail -->
+        <mat-form-field class="example-three-width">
+          <mat-label>Confirmar Correo Electronico</mat-label>
+          <input
+            matInput
+            placeholder="ejemplo@ejemplo.com"
+            formControlName="confEmail"
+          />
+          <mat-icon matSuffix class="color-icon-title">perm_identity</mat-icon>
+        </mat-form-field>
+        <!-- confEmail -->
+
+        <!-- emailVerified -->
+        <div class="isBoolean">
+          <mat-label>Email Verificado</mat-label>
+          <mat-slide-toggle
+            [(ngModel)]="isEmailVerified"
+            style="margin-left: 5px"
+            formControlName="emailVerified"
+          ></mat-slide-toggle>
+        </div>
+        <!-- emailVerified -->
+      </div>
+      <!-- Block 2 -->
+
+      <!-- Button siguiente -->
+      <mat-action-row>
+        <button mat-raised-button color="warn" (click)="prevStep()">
+          Anterior
+        </button>
+        <button mat-raised-button color="primary" (click)="nextStep()">
+          Siguiente
+        </button>
+      </mat-action-row>
+      <!-- Button siguiente -->
+    </form>
+    <!-- Form -->
+  </mat-expansion-panel>
+  <!-- Usuario -->
+
+  <!-- Info contacto -->
+  <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+    <!-- Title -->
+    <mat-expansion-panel-header>
+      <mat-panel-title
+        ><strong>Información de Contacto</strong></mat-panel-title
+      >
+      <mat-icon class="color-icon-title">assignment_ind</mat-icon>
+    </mat-expansion-panel-header>
+    <!-- Title -->
+
+    <!-- Form -->
+    <form [formGroup]="formUser" autocomplete="off">
+      <!-- Block 1 -->
+      <div style="display: flex">
+        <!-- Pais -->
+        <mat-form-field class="example-three-width">
+          <mat-label>País</mat-label>
+          <mat-select
+            [(ngModel)]="selectCountry"
+            formControlName="Country"
+            name="Country"
+            [disableOptionCentering]="true"
+            ><mat-option
+              *ngFor="let item of listCountry"
+              [value]="item.CountryCode"
+              >{{ item.CountryName }}</mat-option
+            ></mat-select
+          >
+        </mat-form-field>
+        <!-- Pais -->
+
+        <!-- City -->
+        <mat-form-field class="example-three-width">
+          <mat-label>Ciudad</mat-label>
+          <input
+            [(ngModel)]="selectCity"
+            matInput
+            placeholder="Ciudad"
+            formControlName="City"
+          />
+          <mat-icon matSuffix class="color-icon-title">location_city</mat-icon>
+        </mat-form-field>
+        <!-- City -->
+
+        <!-- Address -->
+        <mat-form-field class="example-three-width">
+          <mat-label>Dirección</mat-label>
+          <input
+            [(ngModel)]="selectAddress"
+            matInput
+            placeholder="Dirección"
+            formControlName="Address"
+          />
+          <mat-icon matSuffix class="color-icon-title">directions</mat-icon>
+        </mat-form-field>
+        <!-- Address -->
+      </div>
+      <!-- Block 1 -->
+
+      <!-- Block2 -->
+      <div style="display: flex">
+        <!-- Phone -->
+        <mat-form-field class="example-two-width">
+          <mat-label>Télefono</mat-label>
+          <input
+            [(ngModel)]="selectPhone"
+            matInput
+            placeholder="Télefono"
+            formControlName="Phone"
+          />
+          <mat-icon matSuffix class="color-icon-title">phone</mat-icon>
+        </mat-form-field>
+        <!-- Phone -->
+
+        <!-- CelPhone -->
+        <mat-form-field class="example-two-width">
+          <mat-label>Télefono Móvil</mat-label>
+          <input
+            [(ngModel)]="selectCelPhone"
+            matInput
+            placeholder="Télefono"
+            formControlName="CelPhone"
+          />
+          <mat-icon matSuffix class="color-icon-title">settings_cell</mat-icon>
+        </mat-form-field>
+        <!-- CelPhone -->
+      </div>
+      <!-- Block2 -->
+
+      <!-- Button siguiente -->
+      <mat-action-row>
+        <button mat-raised-button color="warn" (click)="prevStep()">
+          Anterior
+        </button>
+        <button mat-raised-button color="primary" (click)="nextStep()">
+          Siguiente
+        </button>
+      </mat-action-row>
+      <!-- Button siguiente -->
+    </form>
+    <!-- Form -->
+  </mat-expansion-panel>
+  <!-- Info contacto -->
+
+  <!-- Info Emergency -->
+  <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+    <!-- Title -->
+    <mat-expansion-panel-header>
+      <mat-panel-title
+        ><strong>Información de Emergencia</strong></mat-panel-title
+      ><mat-icon class="color-icon-title">label_important</mat-icon>
+    </mat-expansion-panel-header>
+    <!-- Title -->
+
+    <!-- Form -->
+    <form [formGroup]="formUser" autocomplete="off">
+      <div style="display: flex">
+        <!-- EmergencyName -->
+        <mat-form-field class="example-two-width">
+          <mat-label>Nombre de Emergencia</mat-label>
+          <input
+            [(ngModel)]="selectEmergencyName"
+            matInput
+            placeholder="Nombre de Emergencia"
+            formControlName="EmergencyName"
+          />
+          <mat-icon matSuffix class="color-icon-title"
+            >perm_contact_calendar</mat-icon
+          >
+        </mat-form-field>
+        <!-- EmergencyName -->
+
+        <!-- EmergencyPhone -->
+        <mat-form-field class="example-two-width">
+          <mat-label>Télefono de Emergencia</mat-label>
+          <input
+            [(ngModel)]="selectEmergencyPhone"
+            matInput
+            placeholder="Télefono de Emergencia"
+            formControlName="EmergencyPhone"
+          />
+          <mat-icon matSuffix class="color-icon-title">perm_phone_msg</mat-icon>
+        </mat-form-field>
+        <!-- EmergencyPhone -->
+      </div>
+    </form>
+    <!-- Form -->
+  </mat-expansion-panel>
+  <!-- Info Emergency -->
+</mat-accordion>
+<!-- Mat Accordion -->
+
+<!-- Buttons -->
+<mat-action-row>
+  <button mat-raised-button color="warn" (click)="cancelAction()">
+    Cancelar
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="validateActionMethod()"
+    [disabled]="formUser.invalid"
+  >
+    Guardar Usuario
+  </button>
+</mat-action-row>
+<!-- Buttons -->
