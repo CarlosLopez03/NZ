@@ -126,6 +126,7 @@ export class CreateUserComponent implements OnInit {
       username: this.formUser.controls['username'].value,
       password: this.encryptPassword(this.formUser.controls['password'].value),
       email: this.formUser.controls['email'].value,
+      emailVerified: this.formUser.controls['emailVerified'].value,
       infoUser: {
         Country: this.findValueInList(
           this.listCountry,
@@ -199,6 +200,7 @@ export class CreateUserComponent implements OnInit {
       username: this.formUser.controls['username'].value,
       password: this.encryptPassword(this.formUser.controls['password'].value),
       email: this.formUser.controls['email'].value,
+      emailVerified: this.formUser.controls['emailVerified'].value,
       infoUser: {
         Country: this.findValueInList(
           this.listCountry,
